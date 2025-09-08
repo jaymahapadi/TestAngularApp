@@ -1,6 +1,8 @@
-﻿namespace TestAngularApp.Server.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace TestAngularApp.Server.Data
 {
-    public class ApplicationDbContext
+    public class ApplicationDbContext: DbContext
     {
     }
 }
