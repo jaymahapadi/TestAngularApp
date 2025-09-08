@@ -1,0 +1,23 @@
+﻿using TestAngularApp.Server.Data;
+using TestAngularApp.Server.Models.Domain;
+using TestAngularApp.Server.Repositories.Interface;
+
+namespace TestAngularApp.Server.Repositories.Implementation
+{
+    public class CategoryRepoitory : ICategoryRepository
+    {
+        private readonly ApplicationDbContext dbContext;
+
+        public CategoryRepoitory(ApplicationDbContext dbContext)
+        {
+            this.dbContext = dbContext;
+        }
+        public async Task<Category> CreateAsync(Category category)
+        {
+            await dbContext.Categorys.AddAsync(category);
+            await dbContext.SaveChangesAsync();
+            return category;
+        }
+
+    }
+}

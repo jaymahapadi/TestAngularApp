@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TestAngularApp.Server.Data;
 using TestAngularApp.Server.Models.Domain;
 using TestAngularApp.Server.Models.DTO;
+using TestAngularApp.Server.Repositories.Interface;
 
 namespace TestAngularApp.Server.Controllers
 {
@@ -10,11 +11,11 @@ namespace TestAngularApp.Server.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly ApplicationDbContext dbContext;
+        private readonly ICategoryRepository categoryRepository;
 
-        public CategoriesController(ApplicationDbContext dbContext)
+        public CategoriesController(ICategoryRepository categoryRepository)
         {
-            this.dbContext = dbContext;
+            this.categoryRepository = categoryRepository;
         }
 
         [HttpPost]
@@ -28,18 +29,8 @@ namespace TestAngularApp.Server.Controllers
             };
             
             // save to database
-            await dbContext.Categorys.AddAsync(category);
-            await dbContext.SaveChangesAsync();
-
-            // return data in the respose in DTo
-            CategoryDto response = new CategoryDto
-            {
-                Id = category.Id,
-                Name = category.Name,
-                UrlHandle = category.UrlHandle
-            };
-
-           
+            var response = await categoryRepository.CreateAsync(category);
+                       
             return Ok(response);
         }
     }

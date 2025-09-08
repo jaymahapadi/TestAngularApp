@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestAngularApp.Server.Data;
+using TestAngularApp.Server.Repositories.Implementation;
+using TestAngularApp.Server.Repositories.Interface;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +18,8 @@ var connectionString = builder.Configuration.GetConnectionString("TestData");
 // Configure DbContext with the connection string
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
+
+builder.Services.AddScoped<ICategoryRepository,CategoryRepoitory>();
 
 var app = builder.Build();
 
