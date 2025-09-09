@@ -1,4 +1,5 @@
-﻿using TestAngularApp.Server.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using TestAngularApp.Server.Data;
 using TestAngularApp.Server.Models.Domain;
 using TestAngularApp.Server.Repositories.Interface;
 
@@ -17,6 +18,11 @@ namespace TestAngularApp.Server.Repositories.Implementation
             await dbContext.Categorys.AddAsync(category);
             await dbContext.SaveChangesAsync();
             return category;
+        }
+
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+        {
+            return await dbContext.Categorys.ToListAsync();
         }
 
     }

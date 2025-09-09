@@ -33,5 +33,20 @@ namespace TestAngularApp.Server.Controllers
                        
             return Ok(response);
         }
+
+        [HttpGet]
+        //GET   'https://localhost:7228/api/Categories' \
+
+        public async Task<IActionResult> GetAllCategories()
+        {
+            var categories = await categoryRepository.GetCategoriesAsync();
+            var response =categories.Select(c => new CategoryDto
+            {
+                Id = c.Id,
+                Name = c.Name,
+                UrlHandle = c.UrlHandle
+            });
+            return Ok(response);
+        }
     }
 }
