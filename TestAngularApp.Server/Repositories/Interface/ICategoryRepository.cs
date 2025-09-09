@@ -9,5 +9,7 @@ namespace TestAngularApp.Server.Repositories.Interface
         Task<IEnumerable<Category>> GetCategoriesAsync();
 
         Task<Category?> GetCategoryByIdAsync(Guid id);
+
+        Task<Category?> UpdateCategoryAsync(Category category);
     }
 }

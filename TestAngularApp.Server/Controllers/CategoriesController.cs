@@ -66,5 +66,29 @@ namespace TestAngularApp.Server.Controllers
             };
             return Ok(response);
         }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> UpdateCategory([FromRoute] Guid id,UpdateCategoryDTO updateCategoryDTO)
+        {
+            var category = new Category 
+            { Id = id
+            , Name = updateCategoryDTO.Name
+            , UrlHandle = updateCategoryDTO.UrlHandle };
+
+            var updatedCategory = await categoryRepository.UpdateCategoryAsync(category);
+            
+            if (updatedCategory == null)
+            {
+                return NotFound();
+            }
+            var response = new CategoryDto
+            {
+                Id = updatedCategory.Id,
+                Name = updatedCategory.Name,
+                UrlHandle = updatedCategory.UrlHandle
+            };
+            return Ok(response);
+        }
     }
 }

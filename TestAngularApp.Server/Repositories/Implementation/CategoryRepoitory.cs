@@ -30,5 +30,18 @@ namespace TestAngularApp.Server.Repositories.Implementation
             return await dbContext.Categorys.FirstOrDefaultAsync(c => c.Id == id);
         }
 
+        public async Task<Category?> UpdateCategoryAsync(Category category)
+        {
+            var categoryToUpdate = await dbContext.Categorys.FirstOrDefaultAsync(c => c.Id == category.Id);
+
+            if (categoryToUpdate != null)
+            {
+                dbContext.Entry(categoryToUpdate).CurrentValues.SetValues(category);
+                await dbContext.SaveChangesAsync();
+                return category;
+            }
+
+            return null;
+        }
     }
 }
