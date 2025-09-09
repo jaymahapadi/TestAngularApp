@@ -90,5 +90,23 @@ namespace TestAngularApp.Server.Controllers
             };
             return Ok(response);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] Guid id)
+        {
+            var deletedCategory = await categoryRepository.DeleteCategoryAsync(id);
+            if (deletedCategory == null)
+            {
+                return NotFound();
+            }
+            var response = new CategoryDto
+            {
+                Id = deletedCategory.Id,
+                Name = deletedCategory.Name,
+                UrlHandle = deletedCategory.UrlHandle
+            };
+            return Ok(response);
+        }
     }
 }

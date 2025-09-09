@@ -43,5 +43,17 @@ namespace TestAngularApp.Server.Repositories.Implementation
 
             return null;
         }
+
+        public async Task<Category?> DeleteCategoryAsync(Guid id)
+        {
+            var category = await dbContext.Categorys.FirstOrDefaultAsync(c => c.Id == id);
+            if (category != null)
+            {
+                dbContext.Categorys.Remove(category);
+                await dbContext.SaveChangesAsync();
+                return category;
+            }
+            return null;
+        }
     }
 }
