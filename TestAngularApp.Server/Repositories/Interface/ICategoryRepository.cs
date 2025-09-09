@@ -7,5 +7,7 @@ namespace TestAngularApp.Server.Repositories.Interface
         Task<Category> CreateAsync(Category category);
 
         Task<IEnumerable<Category>> GetCategoriesAsync();
+
+        Task<Category?> GetCategoryByIdAsync(Guid id);
     }
 }

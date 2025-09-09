@@ -25,5 +25,10 @@ namespace TestAngularApp.Server.Repositories.Implementation
             return await dbContext.Categorys.ToListAsync();
         }
 
+        public async Task<Category?> GetCategoryByIdAsync(Guid id)
+        {
+            return await dbContext.Categorys.FirstOrDefaultAsync(c => c.Id == id);
+        }
+
     }
 }
