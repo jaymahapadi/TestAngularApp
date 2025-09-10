@@ -12,5 +12,6 @@ namespace TestAngularApp.Server.Data
 
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Category> Categorys { get; set; }
+        public DbSet<BlogImage> BlogImages { get; set; }
     }
 }
