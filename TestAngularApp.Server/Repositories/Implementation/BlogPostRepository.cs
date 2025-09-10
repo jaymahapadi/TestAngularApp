@@ -54,7 +54,7 @@ namespace TestAngularApp.Server.Repositories.Implementation
 
         public async Task<BlogPost?> DeleteBlogPostAsync(Guid id)
         {
-            var deletedBlogPost=await applicationDbContext.BlogPosts.FirstOrDefaultAsync(x=>x.Id==id);
+            var deletedBlogPost=await applicationDbContext.BlogPosts.Include(x => x.Categories).FirstOrDefaultAsync(x=>x.Id==id);
 
             if (deletedBlogPost==null)
             {
