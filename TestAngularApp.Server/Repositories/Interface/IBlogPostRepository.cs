@@ -10,6 +10,9 @@ namespace TestAngularApp.Server.Repositories.Interface
 
         Task<BlogPost?> GetBlogPostByIdAsync(Guid id);
 
+
+        Task<BlogPost?> GetBlogPostByUrlHandleAsync(string urlHandle);
+
         Task<BlogPost?> UpdateBlogPostAsync(BlogPost blogPost);
         Task<BlogPost?> DeleteBlogPostAsync(Guid id);
     }

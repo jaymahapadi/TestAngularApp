@@ -66,5 +66,11 @@ namespace TestAngularApp.Server.Repositories.Implementation
 
             return deletedBlogPost;
         }
+
+        public async Task<BlogPost?> GetBlogPostByUrlHandleAsync(string urlHandle)
+        {
+            var response=await applicationDbContext.BlogPosts.Include(x => x.Categories).FirstOrDefaultAsync(x=>x.UrlHandle==urlHandle);
+            return response;
+        }
     }
 }

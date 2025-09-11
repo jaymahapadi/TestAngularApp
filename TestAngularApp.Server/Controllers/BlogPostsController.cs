@@ -213,5 +213,35 @@ namespace TestAngularApp.Server.Controllers
             };
             return Ok(response);
         }
+
+        [HttpGet]
+        [Route("urlHandle/{urlHandle}")]
+        public async Task<IActionResult> GetBlogPostByUrlHandle([FromRoute] string urlHandle)
+        {
+            var blogpost = await blogPostRepository.GetBlogPostByUrlHandleAsync(urlHandle);
+            if (blogpost == null)
+            {
+                return NotFound();
+            }
+            var response = new NewBlogPostDto
+            {
+                Id = blogpost.Id,
+                Title = blogpost.Title,
+                ShortDescription = blogpost.ShortDescription,
+                Content = blogpost.Content,
+                FeaturedImageUrl = blogpost.FeaturedImageUrl,
+                UrlHandle = blogpost.UrlHandle,
+                PublishedDate = blogpost.PublishedDate,
+                Author = blogpost.Author,
+                IsVisible = blogpost.IsVisible,
+                Categories = blogpost.Categories.Select(c => new CategoryDto
+                {
+                    Id = c.Id,
+                    Name = c.Name,
+                    UrlHandle = c.UrlHandle
+                }).ToList()
+            };
+            return Ok(response);
+        }
     }
 }
