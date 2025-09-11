@@ -35,6 +35,7 @@
 
   <ItemGroup>
     <Folder Include="Controllers\NewFolder\" />
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>

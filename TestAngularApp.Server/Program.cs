@@ -23,6 +23,8 @@ builder.Services.AddScoped<ICategoryRepository,CategoryRepoitory>();
 builder.Services.AddScoped<IBlogPostRepository, BlogPostRepository>();
 builder.Services.AddScoped<IImageRepository, ImageRepository>();
 
+builder.Services.AddHttpContextAccessor();
+
 var app = builder.Build();
 
 app.UseDefaultFiles();
@@ -38,6 +40,14 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+//allow application to access files from the application
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider=new Microsoft.Extensions.FileProviders.PhysicalFileProvider(
+        Path.Combine(builder.Environment.ContentRootPath, "Images")),
+    RequestPath="/Images"
+});
 
 app.MapControllers();
 
