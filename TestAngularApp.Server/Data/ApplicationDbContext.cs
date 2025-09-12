@@ -5,7 +5,8 @@ namespace TestAngularApp.Server.Data
 {
     public class ApplicationDbContext: DbContext
     {
-        public ApplicationDbContext(DbContextOptions options):base(options)
+        //mention dbcontext in dbcontext options in case of multiple dbcontext
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options):base(options)
         {
                 
         }
