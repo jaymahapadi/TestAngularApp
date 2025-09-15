@@ -42,7 +42,7 @@
             ],
             "scripts": [
               "Scripts/jquery-3.7.1.min.js",
-              "Scripts/bootstrap.min.js"
+              "Scripts/bootstrap.bundle.min.js"
             ]
           },
           "configurations": {
