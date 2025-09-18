@@ -12,7 +12,7 @@
     <a [routerLink]="['/admin/categories/add']" class="btn btn-primary">Add Category</a>
   </div>
 
-  <ng-container *ngIf="categories$ | async categories">
+  <ng-container *ngIf="categories$ | async as categories">
     <table class="table table-bordered mt-3">
       <thead>
         <tr>
@@ -54,12 +54,12 @@
       </thead>
       <tbody>
         <tr *ngFor="let category of categories">
-          <td>{{category.Id}}</td>
+          <td>{{category.id}}</td>
           <td>{{category.name}}</td>
           <td>{{category.urlHandle}}</td>
-          <!-- <td>
+          <td>
             <a class="btn btn-light" [routerLink]="['/admin/categories', category.id]">Edit</a>
-          </td> -->
+          </td>
         </tr>
       </tbody>
     </table>

@@ -1,5 +1,5 @@
 export interface Category{
-    Id:string;
+    id:string;
     name:string;
     urlHandle:string;
 }
