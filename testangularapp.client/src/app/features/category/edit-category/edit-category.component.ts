@@ -42,7 +42,7 @@ export class EditCategoryComponent implements OnInit,OnDestroy{
     
     if(this.id)
     {
-      this.editCategorySubscription=this.categoryService.getCategoryById(this.id)
+      this.categoryService.getCategoryById(this.id)
       .subscribe({
         next:(response)=> {
           this.category=response;
