@@ -4,6 +4,7 @@ import { AddBlogPost } from '../models/add-blog-post.model';
 import { environment } from '../../../../environments/environment';
 import { Observable } from 'rxjs';
 import { BlogPost } from '../models/blog-post.model';
+import { UpdateBlogPost } from '../models/update-blog-post.model';
 
 @Injectable({
   providedIn: 'root'
@@ -21,4 +22,15 @@ export class BlogpostServiceService {
     return this.httpClient.get<BlogPost[]>(`${environment.apiBaseUrl}/api/BlogPosts`);
   }
 
+  getBlogPostById(id: string): Observable<BlogPost> {
+    return this.httpClient.get<BlogPost>(`${environment.apiBaseUrl}/api/BlogPosts/${id}`);
+  }
+
+  deleteBlogPost(id: string): Observable<void> {
+    return this.httpClient.delete<void>(`${environment.apiBaseUrl}/api/BlogPosts/${id}`);
+  }
+
+  updateBlogPost(id: string, postData: UpdateBlogPost): Observable<BlogPost> {
+    return this.httpClient.put<BlogPost>(`${environment.apiBaseUrl}/api/BlogPosts/${id}`, postData);
+  }
 }
