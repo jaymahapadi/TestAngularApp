@@ -22,6 +22,7 @@ export class EditBlogpostComponent implements OnInit,OnDestroy {
   model?:BlogPost;
   categories$?:Observable<Category[]>;
   selectedCategories?:string[];
+  isImageSelectorVisible: boolean = false;
 
   constructor(private blogPostService :BlogpostServiceService
     ,private route:ActivatedRoute,
@@ -96,5 +97,10 @@ export class EditBlogpostComponent implements OnInit,OnDestroy {
   }
 
   openImageSelector() {
+    this.isImageSelectorVisible = true;
+  }
+
+  closeImageSelector() {
+    this.isImageSelectorVisible = false;
   }
 }
