@@ -5,7 +5,7 @@ import { BlogpostServiceService } from './blogpost-service.service';
 describe('BlogpostServiceService', () => {
   let service: BlogpostServiceService;
 
-  beforeEach(() => {
+  beforeEach(() => { 
     TestBed.configureTestingModule({});
     service = TestBed.inject(BlogpostServiceService);
   });
